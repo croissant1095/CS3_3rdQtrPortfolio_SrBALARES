@@ -1,0 +1,32 @@
+* {
+    font-family: 'Nunito', Arial, sans-serif;
+    background-color: azure;
+}
+h1 {
+    color: midnightblue;
+    font-family:'Courier New', Courier, monospace;
+}
+h2 {
+    color: midnightblue;
+    text-align: center;
+    font-style: italic;
+}
+
+div {
+    display: flex;
+
+
+}
+label, input {
+    margin-top: 8px;
+}
+
+input[type="submit"], input[type="reset"] {
+    background-color: black;
+    border: black solid;
+    color: white;
+    border-radius: 15px;
+    width: 110px;
+    height: 35px;
+    font-size: 14px;
+}
