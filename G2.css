@@ -33,6 +33,10 @@ input[type="submit"], input[type="reset"] {
     font-size: 14px;
 }
 
+input {
+    border: solid;
+}
+
 input:focus, textarea:focus, select:focus {
     transform: scale(1.067);
 }
