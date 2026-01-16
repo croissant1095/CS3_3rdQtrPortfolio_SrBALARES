@@ -26,6 +26,7 @@
                 <input type="date" id="bday" name="bday" required><br>
                 <label for="email">Email Address</label>
                 <input type="text" id="email" name="email" required><br>
+
                 <input type="submit" value="Submit">
                 <input type="reset" value="Reset">
 
@@ -37,12 +38,35 @@
             <form action="submit" method="post">
                 <label for="phone">Mobile Phone</label>
                 <input type="text" id="phone" name="phone" required><br>
-                <label for="fname">Full Name</label>
-                <input type="text" id="fname" name="fname" required><br>
-                <label for="bday">Birthday</label>
-                <input type="date" id="bday" name="bday" required><br>
-                <label for="email">Email Address</label>
-                <input type="text" id="email" name="email" required><br>
+                <label for="grade">Grade Level</label>
+                <select name="grade" id="grade">
+                    <option value="seven">Grade 7</option>
+                    <option value="eight">Grade 8</option>
+                    <option value="nine">Grade 9</option>
+                    <option value="ten">Grade 10</option>
+                    <option value="eleven">Grade 11</option>
+                    <option value="twelve">Grade 12</option>
+                </select><br>
+
+                <p>Intern/Extern:</p>
+                <input type="radio" id="intern" name="living" value="intern" required checked>
+                <label for="intern">Intern</label><br>
+                <input type="radio" id="extern" name="living" value="extern" required checked>
+                <label for="extern">Extern</label><br>
+
+
+                <label for="club">Preferred Organization/Club</label>
+                <select name="club" id="club">
+                    <option value="computron">Computron</option>
+                    <option value="himig agham">Himig Agham</option>
+                    <option value="bravura">Bravura</option>
+                    <option value="sightlines">Sightlines</option>
+                    <option value="invictus">Invictus</option>
+                </select><br>
+
+                <label for="reason">Why do you want to join?</label><br>
+                <textarea name="reason" id="reason" rows="4" cols="50"></textarea><br>
+
                 <input type="submit" value="Submit">
                 <input type="reset" value="Reset">
             </form>
