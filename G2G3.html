@@ -6,7 +6,7 @@
         <meta name="author" content="Ryan Gavin Balares">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="G2.css">
-        <title>Q3 G2 - HTML Form</title>
+        <title>Q3 G2 and G3 - HTML Form</title>
     </head>
 
     <body>
@@ -16,7 +16,7 @@
         </header>
         <main>
             <div>
-            <form>
+            <form id="clubform">
                 <label for="studentID">Student ID</label>
                 <input type="number" id="studentID" name="studentID" required onblur="change_color('studentID')"><br>
                 <label for="fname">Full Name</label>
@@ -52,25 +52,81 @@
                 <label for="reason">Why do you want to join?</label><br>
                 <textarea name="reason" id="reason" rows="4" cols="50" onblur="change_color('reason')"></textarea><br>
 
-                <input onclick="return submit_confirm()" type="submit" value="Submit">
+                <input id="submit" type="submit" value="Submit">
                 <input onclick="return reset_confirm()" type="reset" value="Reset">
             </form>
             </div>
-
+            <!-- fix link -->
+            <a id="link" href="https://github.com/croissant1095/CS3_3rdQtrPortfolio_SrBALARES/blob/main/G2.html">View Signups</a>
         </main>
 
         <script>
-            function submit_confirm() {
-                return confirm("Do you want to submit the information?")
-            }
             function reset_confirm() {
                 return confirm("Do you want to reset your form information?")
             }
-            // goofy color change 
+
+            // gooofy color change :0
             function change_color(id) {
                 const thing = document.getElementById(id);
-                thing.style.border = "solid maroon";
+                thing.style.border = "solid forestgreen";
             }
+
+            // Start of G3 Progress - localStorage :((
+            // this HTML file handles the collection of data, then loading & saving onto local storage
+
+            // key for localstorage pair containing signups stored as constant
+            const KEY = "signups"
+
+            function loadSignUps() {
+                const raw = localStorage.getItem(KEY);
+                return raw ? JSON.parse(raw) : [];
+            }
+
+            function saveSignUps(signUps) {
+                localStorage.setItem(KEY, JSON.stringify(signUps));
+            }
+
+            function showRedirect() {
+                const signUpsLink = document.getElementById("link");
+                signUpsLink.style.display = 'inline';
+            }
+            const form = document.getElementById('clubform');
+            form.onsubmit = e => {
+                e.preventDefault();
+                const studentID = document.getElementById('studentID').value.trim();
+                const fname = document.getElementById('fname').value.trim();
+                const bday = document.getElementById("bday").value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const grade = document.getElementById('grade').value.trim();
+                const living = document.querySelector('input[name="living"]:checked').value.trim();
+                const club = document.getElementById('club').value.trim();
+                const reason = document.getElementById('reason').value.trim();
+
+                if (!studentID||!fname||!bday||!email||!phone||!grade||!living||!club||!reason) return;
+
+                const signUp = {
+                    studentID: studentID,
+                    fname: fname,
+                    bday: bday,
+                    email: email,
+                    phone: phone,
+                    grade: grade,
+                    living: living,
+                    club: club,
+                    reason: reason,
+                }
+
+                const signUps = loadSignUps();
+                signUps.push(signUp);
+                saveSignUps(signUps);
+                showRedirect();
+            }
+            // flow:
+            // - users submits data 
+            // - form submission is detected, data is stored in object
+            // - object containing other signups is taken out, and the new signup is pushed
+            // - this new object is saved into localStorage
         </script>
     </body>
 </html>

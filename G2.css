@@ -44,3 +44,8 @@ input:focus, textarea:focus, select:focus {
 textarea {
     margin-left: 46px;
 }
+
+a {
+    text-decoration: none;
+    display: none;
+}
