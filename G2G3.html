@@ -28,7 +28,8 @@
                 <label for="phone">Mobile Phone</label>
                 <input type="text" id="phone" name="phone" required onblur="change_color('phone')"><br>
                 <label for="grade">Grade Level</label>
-                <select name="grade" id="grade">
+                <select name="grade" id="grade" required>
+                    <option value=""> --Select-- </option>
                     <option value="seven">Grade 7</option>
                     <option value="eight">Grade 8</option>
                     <option value="nine">Grade 9</option>
@@ -42,16 +43,16 @@
                 <input type="radio" id="extern" name="living" value="extern" required checked>
                 <label for="extern">Extern</label><br>
                 <label for="club">Preferred Organization/Club</label>
-                <select name="club" id="club">
+                <select name="club" id="club" required>
+                    <option value=""> --Select-- </option>
                     <option value="computron">Computron</option>
-                    <option value="himig agham">Himig Agham</option>
+                    <option value="himigAgham">Himig Agham</option>
                     <option value="bravura">Bravura</option>
                     <option value="sightlines">Sightlines</option>
                     <option value="invictus">Invictus</option>
                 </select><br>
                 <label for="reason">Why do you want to join?</label><br>
-                <textarea name="reason" id="reason" rows="4" cols="50" onblur="change_color('reason')"></textarea><br>
-
+                <textarea required name="reason" id="reason" rows="4" cols="50" onblur="change_color('reason')"></textarea><br>
                 <input id="submit" type="submit" value="Submit">
                 <input onclick="return reset_confirm()" type="reset" value="Reset">
             </form>
@@ -75,7 +76,7 @@
             // this HTML file handles the collection of data, then loading & saving onto local storage
 
             // key for localstorage pair containing signups stored as constant
-            const KEY = "signups"
+            const KEY = "signups";
 
             function loadSignUps() {
                 const raw = localStorage.getItem(KEY);

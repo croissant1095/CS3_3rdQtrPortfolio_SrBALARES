@@ -1,0 +1,60 @@
+* {
+    font-family: 'Nunito', Arial, sans-serif;
+    background-color: azure;
+}
+h1 {
+    color: midnightblue;
+    font-family:'Courier New', Courier, monospace;
+}
+h2 {
+    color: midnightblue;
+    text-align: center;
+    font-style: italic;
+}
+
+div {
+    display: flex;
+
+
+}
+label, input, select, option, p {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 4px;
+}
+
+input[type="submit"], input[type="reset"] {
+    background-color: black;
+    border: black solid;
+    color: white;
+    border-radius: 15px;
+    width: 110px;
+    height: 35px;
+    font-size: 14px;
+}
+
+input {
+    border: solid;
+}
+
+input:focus, textarea:focus, select:focus {
+    transform: scale(1.067);
+}
+
+textarea {
+    margin-left: 46px;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black; 
+    padding: 8px;
+  }
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SignUps List</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Ryan Gavin Balares">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="G3.css">
+    </head>
+
+    <body>
+        <h1>List of Club Sign-Ups</h1>
+        <a href="https://github.com/croissant1095/CS3_3rdQtrPortfolio_SrBALARES/blob/main/G2.html">Back to Sign-Up Form</a>
+        <br>
+
+        <label for="clubFilt">Choose the club:</label>
+        <select id="clubFilt" name="clubFilt">
+            <option value=""> --Select-- </option>
+            <option value="computron">Computron</option>
+            <option value="himigAgham">Himig Agham</option>
+            <option value="bravura">Bravura</option>
+            <option value="sightlines">Sightlines</option>
+            <option value="invictus">Invictus</option>
+        </select>
+        <p id="count">Number of Sign-Ups: </p>
+        <div >
+            <table id="table">
+                <tr>
+                    <th>Student ID</th>
+                    <th>Full Name</th>
+                    <th>Birthday</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Grade Level</th>
+                    <th>Residence</th>
+                    <th>Club</th>
+                    <th>Reason to Join</th>
+                </tr>
+            </table>
+        </div>
+
+        <script>
+            const list = document.getElementById("table")
+            const KEY = "signups";
+            const count = document.getElementById("count");
+            
+            function addRow(signUp) {
+                // signUp -> an object {id: ..., name: ....}
+                let newRow = list.insertRow();
+                console.log("Inserted Row");
+                let cellId = newRow.insertCell(0);
+                let cellName = newRow.insertCell(1);
+                let cellBirthday = newRow.insertCell(2);
+                let cellEmail = newRow.insertCell(3);
+                let cellPhone = newRow.insertCell(4);
+                let cellGradeLevel = newRow.insertCell(5);
+                let cellResidence = newRow.insertCell(6);
+                let cellClub = newRow.insertCell(7);
+                let cellReason = newRow.insertCell(8);
+
+                cellId.innerHTML = signUp.studentID;
+                cellName.innerHTML = signUp.fname;
+                cellBirthday.innerHTML = signUp.bday;
+                cellEmail.innerHTML = signUp.email;
+                cellPhone.innerHTML = signUp.phone;
+                cellGradeLevel.innerHTML = signUp.grade;
+                cellResidence.innerHTML = signUp.living;
+                cellClub.innerHTML = signUp.club;
+                cellReason.innerHTML = signUp.reason;
+            }
+
+            function loadSignUps() {
+                const raw = localStorage.getItem(KEY);
+                return raw ? JSON.parse(raw) : []
+            }
+
+            // render whole sign ups 
+
+            const allSignUps = loadSignUps();
+            count.innerHTML += allSignUps.length;
+            for (let h = 0; h < allSignUps.length; h++) {
+                addRow(allSignUps[h]);
+            }
+
+            const clubSelect = document.getElementById("clubFilt");
+            clubSelect.onchange = function() {
+                count.innerHTML = "Number of Sign-Ups: "
+                list.innerHTML = '<table><tr><th>Student ID</th><th>Full Name</th><th>Birthday</th><th>Email</th><th>Phone</th><th>Grade Level</th><th>Residence</th><th>Club</th><th>Reason to Join</th></tr></table>';
+                list.style.border = "1px solid black";
+        
+                // extract selected filter
+                const filter = this.value;
+                console.log(filter);
+                // load and obtain signups list
+                const signUps = loadSignUps();
+                console.log(signUps);
+                // filter the obtained object
+                if (signUps.length === 0) {
+                    // edge case wherein no sign ups are recorded yet
+                    list.innerHTML = '<em>No Sign-Ups Yet!!</em>';
+                }
+                else {
+                    // filter is more concise compared to creating a for loop
+                    const desiredSignUps = signUps.filter(signUp => signUp.club === filter);
+                    
+                    if (desiredSignUps.length === 0) {
+                        list.innerHTML = "<em>No sign-ups for this club yet!!";
+                        list.style.border = "none";
+                    }
+                    count.innerHTML += desiredSignUps.length;
+                    for (let i = 0; i < desiredSignUps.length; i++) {
+                        addRow(desiredSignUps[i]);
+                    }
+                }
+            }
+            // sir roy if you are reading this:
+            // this was the hardest exercise by far it took me 5 hours 
+        </script>
+
+        
+    </body>
+</html>
